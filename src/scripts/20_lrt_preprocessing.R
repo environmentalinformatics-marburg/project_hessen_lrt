@@ -37,7 +37,7 @@ plg_grid = lapply(seq(length(plg_buffer_minarea)), function(i){
                      offset = c(0.5, 0.5), pretty = FALSE, type = "stratified")
   # mapview(plg_grid) + plg_buffer_minarea[i,]
   df = plg_buffer_minarea[i,]@data
-  df = df[rep(row.names(df), length(plg_grid)), 1:46]
+  df = df[rep(row.names(df), length(plg_grid)), 1:12]
   plg_grid = SpatialPointsDataFrame(plg_grid, df)
   saveRDS(plg_grid, paste0(path_rdata, "/plot_grid_", sprintf("name_%04d", i), ".rds"))
   return(plg_grid)
