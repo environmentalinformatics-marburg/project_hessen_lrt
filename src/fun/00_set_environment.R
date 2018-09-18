@@ -8,6 +8,7 @@ if(Sys.info()["sysname"] == "Windows"){
 path_fun <- paste0(filepath_base, "project_hessen_lrt/src/fun/")
 path_data <- paste0(filepath_base, "data/")
 path_landsat <- paste0(path_data, "landsat/")
+path_lidar <- paste0(path_data, "lidar/")
 path_lrt <- paste0(path_data, "lrt/")
 path_temp <- paste0(path_data, "temp/")
 path_rdata <- paste0(path_data, "rdata/")
