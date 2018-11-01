@@ -1,35 +1,39 @@
+# Set libraries ----------------------------------------------------------------
+libs = c("doParallel",
+         "gpm",
+         "ggplot2",
+         "link2GI",
+         "mapview",
+         "rPointDB",
+         "raster",
+         "rgdal",
+         "rgeos",
+         "sp")
+
+lapply(libs, require, character.only = TRUE)
+
 # Set path ---------------------------------------------------------------------
 if(Sys.info()["sysname"] == "Windows"){
-  filepath_base <- "C:/Users/tnauss/permanent/plygrnd/hessen_wald_lrt/"
+  filepath_base = "C:/Users/tnauss/permanent/plygrnd/hessen_wald_lrt/"
 } else {
-  filepath_base <- "/media/permanent/active/hessen_wald_lrt/"
+  projRootDir = "/media/permanent/active/hessen_wald_lrt/"
 }
 
-path_fun <- paste0(filepath_base, "project_hessen_lrt/src/fun/")
-path_data <- paste0(filepath_base, "data/")
-path_landsat <- paste0(path_data, "landsat/")
-path_lidar <- paste0(path_data, "lidar/")
-path_lrt <- paste0(path_data, "lrt/")
-path_temp <- paste0(path_data, "temp/")
-path_rdata <- paste0(path_data, "rdata/")
+project_folders = c("data/", "data/sentinel/", "data/lidar/",
+                    "data/lrt/org/", "data/lrt/20_lrt_buffered/",
+                    "data/tmp/", "data/rdata/",
+                    "project_hessen_lrt/src/fun/")
 
+GRASSlocation = paste0(projRootDir, "/data/tmp/")
 
-# Set libraries ----------------------------------------------------------------
-library(doParallel)
-library(gpm)
-library(ggplot2)
-library(mapview)
-library(rPointDB)
-library(raster)
-library(rgdal)
-library(rgeos)
-library(sp)
+envrmt = initProj(projRootDir = filepath_base , projFolders = project_folders,
+         path_prefix = "path_", global = FALSE)
 
 # Other settings ---------------------------------------------------------------
-rasterOptions(tmpdir = path_temp)
+rasterOptions(tmpdir = envrmt$path_data_tmp)
 
 saga_cmd <- "C:/OSGeo4W64/apps/saga/saga_cmd.exe "
 # initOTB("C:/OSGeo4W64/bin/")
-initOTB("C:/OSGeo4W64/OTB-5.8.0-win64/OTB-5.8.0-win64/bin/")
+# initOTB("C:/OSGeo4W64/OTB-5.8.0-win64/OTB-5.8.0-win64/bin/")
 
 
